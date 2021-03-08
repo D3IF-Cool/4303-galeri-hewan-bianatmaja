@@ -1,8 +1,11 @@
 package org.d3if0021.galerihewan
 
+import MainAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import org.d3if0021.galerihewan.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +18,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        Log.d("MainActivity", "Jumlah data: " + getData().size)
+        //Log.d("MainActivity", "Jumlah data: " + getData().size)
+        with(binding.recyclerView) {
+            addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
+            adapter = MainAdapter(getData())
+            setHasFixedSize(true)
+        }
 
     }
     private fun getData(): List<Hewan> {
